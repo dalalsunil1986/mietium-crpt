@@ -1,11 +1,7 @@
 package com.github.rubensousa.guiao3;
 
 import javax.crypto.*;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-import java.io.*;
 import java.security.*;
-import java.security.cert.CertificateException;
 
 public class Main {
 
@@ -19,36 +15,6 @@ public class Main {
      * Mensagem -> encrypt -> IV + Criptograma e seu MAC -> Mensagem final
      *
      */
-
-    /**
-     * Cifra a ser usada
-     */
-    public static final String CIPHER = "AES";
-
-
-    public static final String CIPHER_INSTANCE = "AES/CBC/PKCS5Padding";
-
-    /**
-     * Algoritmo MAC a ser usado
-     */
-    public static final String MAC_ALGORITHM = "HmacSHA256";
-
-    public static final String KEY_ALIAS = "passphrase";
-
-    public static final String SECRET_KEY_ALIAS = "alias";
-
-    public static final String MAC_KEY_ALIAS = "macalias";
-
-    public static final String KEYSTORE_TYPE = "JCEKS";
-
-    public static final byte[] IV = new byte[]{127, 45, 110, 46, 16, 108, 116, 7, 38, 48, 30, 122, 17, 35, 59, 47};
-
-    public static final int IV_LENGTH = 16;
-
-    /**
-     * Tamanho da chave em bits
-     */
-    public static final int KEY_LENGTH = 128;
 
     public static void main(String[] args) {
 
