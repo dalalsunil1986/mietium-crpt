@@ -12,9 +12,12 @@ de fazer uso da funcionalidade oferecida pela *framework JCA*.
 
 Relembre a sequência de mensagens trocadas no protocolo de acordo de chaves
 *Diffie-Hellman*:
- 1. Alice → Bob : g^x^
- 1. Bob → Alice : g^y^
- 1. Alice, Bob : K = g^x y^
+
+ 1. Alice → Bob : g^x
+ 1. Bob → Alice : g^y
+ 1. Alice, Bob : K = g^(x*y)
+
+
 Onde `g` é um gerador de um grupo cíclico de ordem prima `p`, `x` e `y` são elementos aleatórios do grupo, e `K` é o segredo estabelecido pelo protocolo.
 
 Para simplificar, podem-se considerar os seguintes parâmetros para o protocolo:
@@ -25,7 +28,7 @@ G = 4415740483796032876887268067768680265099916322676669479765081037907641646314
 ```
 
 
-Algumas classes relevantes (ver [http://download.oracle.com/javase/8/docs/api/ API]):
+Algumas classes relevantes (ver [API](http://download.oracle.com/javase/8/docs/api/)):
 
  * `java.math.BigInteger`
 
