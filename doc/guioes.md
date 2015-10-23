@@ -8,15 +8,13 @@
 
 Pretende-se implementar o protocolo de acordo de chaves *Diffie-Hellman*. Para tal,
 iremos codifica-lo "explicitamente" com recurso à classe `BigInteger` do Java (em vez
-de fazer uso da funcionalidade oferecida pela *framework JCA*.
+de fazer uso da funcionalidade oferecida pela *framework JCA*).
 
-Relembre a sequência de mensagens trocadas no protocolo de acordo de chaves
-*Diffie-Hellman*:
+Relembre a sequência de mensagens trocadas no protocolo *Diffie-Hellman*:
 
- 1. Alice → Bob : g^x
- 1. Bob → Alice : g^y
- 1. Alice, Bob : K = g^(x*y)
-
+ 1. Alice → Bob : g<sup>x</sup>
+ 1. Bob → Alice : g<sup>y</sup>
+ 1. Alice, Bob : K = g<sup>(x*y)</sup>
 
 Onde `g` é um gerador de um grupo cíclico de ordem prima `p`, `x` e `y` são elementos aleatórios do grupo, e `K` é o segredo estabelecido pelo protocolo.
 
