@@ -1,5 +1,27 @@
 # Guiões das Sessões Laboratoriais
 
+---
+## Semana 8
+
+### Protocolo *Diffie-Hellman* no JCA
+
+Esta aula será dedicada a transferir o programa realizado na última sessão para a "engine class" do JCA que implementa
+o protocolo "Diffie-Hellman": a classe `KeyAgreement`. Para o efeito deverá utilizar:
+
+ * Classe `AlgorithmParameterGenerator` para gerar os parâmetros "P" e "G" do algoritmo;
+ * Classe `KeyPairGenerator` para gerar os pares de chaves ( "(x, g<sup>x</sup>)" e "(y, g<sup>y</sup>)" para cada um dos intervenientes);
+ * Classe `KeyAgreement` que implementa o protocolo propriamente dito. 
+
+obs.: No *JCA Reference Guide* (ver http://docs.oracle.com/javase/7/docs/technotes/guides/security/) está disponível
+um exemplo com a codificação do protocolo ''Diffie-Hellman''.
+
+Algumas classes relevantes:
+
+    * `java.security.AlgorithParameterGenerator`
+    * `javax.crypto.spec.DHParameterSpec`
+    * `javax.crypto.KeyAgreement`
+    * `java.security.KeyPairGenerator`
+    * `java.security.KeyPair`
 
 ---
 ## Semana 7
