@@ -15,13 +15,13 @@ o protocolo "Diffie-Hellman": a classe `KeyAgreement`. Para o efeito deverá uti
 obs.: No *JCA Reference Guide* (ver http://docs.oracle.com/javase/7/docs/technotes/guides/security/) está disponível
 um exemplo com a codificação do protocolo ''Diffie-Hellman''.
 
-Algumas classes relevantes:
+Algumas classes relevantes (ver [API](http://download.oracle.com/javase/8/docs/api/)):
 
-    * `java.security.AlgorithParameterGenerator`
-    * `javax.crypto.spec.DHParameterSpec`
-    * `javax.crypto.KeyAgreement`
-    * `java.security.KeyPairGenerator`
-    * `java.security.KeyPair`
+ * `java.security.AlgorithParameterGenerator`
+ * `javax.crypto.spec.DHParameterSpec`
+ * `javax.crypto.KeyAgreement`
+ * `java.security.KeyPairGenerator`
+ * `java.security.KeyPair`
 
 ---
 ## Semana 7
