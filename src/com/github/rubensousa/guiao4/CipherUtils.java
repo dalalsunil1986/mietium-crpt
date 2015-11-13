@@ -185,7 +185,6 @@ public class CipherUtils {
         if (!Arrays.equals(macData, macCalc)) {
             throw new IOException("macs não coincidem");
         }
-
         data = mCipher.doFinal(data);
         return new String(data, "UTF-8");
     }
