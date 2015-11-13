@@ -1,7 +1,66 @@
 # Guiões das Sessões Laboratoriais
 
 ---
-## Semana 5 Canal seguro entre Cliente/Servidor 
+## Semana 8
+
+### Protocolo *Diffie-Hellman* no JCA
+
+Esta aula será dedicada a transferir o programa realizado na última sessão para a "engine class" do JCA que implementa
+o protocolo "Diffie-Hellman": a classe `KeyAgreement`. Para o efeito deverá utilizar:
+
+ * Classe `AlgorithmParameterGenerator` para gerar os parâmetros "P" e "G" do algoritmo;
+ * Classe `KeyPairGenerator` para gerar os pares de chaves ( "(x, g<sup>x</sup>)" e "(y, g<sup>y</sup>)" para cada um dos intervenientes);
+ * Classe `KeyAgreement` que implementa o protocolo propriamente dito. 
+
+obs.: No *JCA Reference Guide* (ver http://docs.oracle.com/javase/7/docs/technotes/guides/security/) está disponível
+um exemplo com a codificação do protocolo ''Diffie-Hellman''.
+
+Algumas classes relevantes (ver [API](http://download.oracle.com/javase/8/docs/api/)):
+
+ * `java.security.AlgorithParameterGenerator`
+ * `javax.crypto.spec.DHParameterSpec`
+ * `javax.crypto.KeyAgreement`
+ * `java.security.KeyPairGenerator`
+ * `java.security.KeyPair`
+
+---
+## Semana 7
+
+### Protocolo *Diffie-Hellman*
+
+Pretende-se implementar o protocolo de acordo de chaves *Diffie-Hellman*. Para tal,
+iremos codifica-lo "explicitamente" com recurso à classe `BigInteger` do Java (em vez
+de fazer uso da funcionalidade oferecida pela *framework JCA*).
+
+Relembre a sequência de mensagens trocadas no protocolo *Diffie-Hellman*:
+
+ 1. Alice → Bob : g<sup>x</sup>
+ 1. Bob → Alice : g<sup>y</sup>
+ 1. Alice, Bob : K = g<sup>(x*y)</sup>
+
+Onde `g` é um gerador de um grupo cíclico de ordem prima `p`, `x` e `y` são elementos aleatórios do grupo, e `K` é o segredo estabelecido pelo protocolo.
+
+Para simplificar, podem-se considerar os seguintes parâmetros para o protocolo:
+
+```
+P = 99494096650139337106186933977618513974146274831566768179581759037259788798151499814653951492724365471316253651463342255785311748602922458795201382445323499931625451272600173180136123245441204133515800495917242011863558721723303661523372572477211620144038809673692512025566673746993593384600667047373692203583
+G = 44157404837960328768872680677686802650999163226766694797650810379076416463147265401084491113667624054557335394761604876882446924929840681990106974314935015501571333024773172440352475358750668213444607353872754650805031912866692119819377041901642732455911509867728218394542745330014071040326856846990119719675
+```
+
+
+Algumas classes relevantes (ver [API](http://download.oracle.com/javase/8/docs/api/)):
+
+ * `java.math.BigInteger`
+
+---
+## Semana 6
+
+Variantes sobre o guião da semana 5.
+
+---
+## Semana 5
+
+### Canal seguro entre Cliente/Servidor 
 
 As classes [Cliente.java](Cliente.java),
 [Servidor.java](Servidor.java) e [TServidor.java](TServidor.java)
