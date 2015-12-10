@@ -47,7 +47,6 @@ public class BobThread extends Thread {
             mKeyAgreement = KeyAgreement.getInstance("DH");
             mKeyAgreement.init(mKeyPair.getPrivate());
 
-
             // Enviar a chave pública do Bob
             oos.writeObject(mKeyPair.getPublic());
 
