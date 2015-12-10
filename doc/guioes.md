@@ -1,6 +1,33 @@
 # Guiões das Sessões Laboratoriais
 
 ---
+## Semana 10
+
+### Protocolo *Station-to-Station* simplificado
+
+Pretende-se complementar o programa com o acordo de chaves *Diffie-Hellman* para incluir a funcionalidade análoga à do protocolo *Station-to-Station*. Recorde que nesse protocolo é adicionado uma troca de assinaturas:
+
+ 1. Alice → Bob : g<sup>x</sup>
+ 1. Bob → Alice : g<sup>y</sup>, Sig<sub>B</sub>(g<sup>x</sup>, g<sup>y</sup>)
+ 1. Alice → Bob :  Sig<sub>A</sub>(g<sup>x</sup>, g<sup>y</sup>)
+ 1. Alice, Bob : K = g<sup>(x*y)</sup>
+
+Um requisito adicional neste protocolo é a manipulação de pares de chaves de cifras assimétricas (e.g. RSA).  Para tal deve produzir um pequeno programa que gere os pares de chaves para cada um dos intervenientes e os guarde em ficheiros que serão lidos pela aplicação Cliente/Servidor.
+
+Novas Classes:
+
+ * `java.security.Signature`
+ * `java.security.KeyFactory`
+ * `java.security.spec.RSAPrivateKeySpec`
+ * `java.security.spec.RSAPublicKeySpec`
+
+
+---
+## Semana 9
+
+Avaliação
+
+---
 ## Semana 8
 
 ### Protocolo *Diffie-Hellman* no JCA
