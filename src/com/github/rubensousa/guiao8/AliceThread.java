@@ -1,6 +1,8 @@
 package com.github.rubensousa.guiao8;
 
 
+import sun.security.x509.X500Name;
+
 import javax.crypto.KeyAgreement;
 import javax.crypto.spec.DHParameterSpec;
 import java.io.*;
@@ -32,7 +34,7 @@ public class AliceThread extends Thread {
 
         KeyStore keyStore = KeyStore.getInstance("PKCS12");
         keyStore.load(new FileInputStream("Servidor.p12"), "1234".toCharArray());
-        mCertPrivateKey = (PrivateKey) keyStore.getKey("Servidor.p12", "1234".toCharArray());
+        mCertPrivateKey = (PrivateKey) keyStore.getKey("Servidor", "1234".toCharArray());
 
         // Criar gerador de par de chaves
         KeyPairGenerator aliceKeyPairGen = KeyPairGenerator.getInstance("DH");
@@ -45,7 +47,7 @@ public class AliceThread extends Thread {
         mKeyAgreement = KeyAgreement.getInstance("DH");
         mKeyAgreement.init(mKeyPair.getPrivate());
 
-        Certificate[] certArray = keyStore.getCertificateChain("CA.cer");
+        Certificate[] certArray = keyStore.getCertificateChain("Servidor");
         CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
         mCertificate = certFactory.generateCertPath(Arrays.asList(certArray));
         mCertificateCA = certFactory.generateCertificate(new FileInputStream("CA.cer"));
@@ -74,17 +76,8 @@ public class AliceThread extends Thread {
             // Receber assinatura do Bob
             byte[] sign = (byte[]) ois.readObject();
 
-            // Verificar assinatura do Bob
-            Signature signature = Signature.getInstance("SHA256withRSA");
-            signature.initVerify(bobPublicKey);
-
-            if (!signature.verify(sign)) {
-                System.exit(1);
-            }
-
             // Receber certificado do Bob
             CertPath bobCert = (CertPath) ois.readObject();
-
 
             // Validar certificado do Bob
             CertPathValidator cpv = CertPathValidator.getInstance("PKIX");
@@ -104,9 +97,24 @@ public class AliceThread extends Thread {
                 System.exit(1);
             }
 
+            // Verificar assinatura do Bob
+            Signature signature = Signature.getInstance("SHA256withRSA");
+            X509Certificate certificate = (X509Certificate) bobCert.getCertificates().get(0);
+            X500Name x500Name = new X500Name(certificate.getSubjectX500Principal().getName());
+
+            signature.initVerify(certificate.getPublicKey());
+            signature.update(mKeyPair.getPublic().getEncoded());
+            signature.update(bobPublicKey.getEncoded());
+
+            if (!signature.verify(sign)) {
+                System.out.println("Assinatura inválida");
+                System.exit(1);
+            }
+
             // Certificado válido, enviar assinatura
             signature.initSign(mCertPrivateKey);
-            signature.update(secret);
+            signature.update(mKeyPair.getPublic().getEncoded());
+            signature.update(bobPublicKey.getEncoded());
             oos.writeObject(signature.sign());
             oos.flush();
 
