@@ -102,6 +102,10 @@ public class AliceThread extends Thread {
             X509Certificate certificate = (X509Certificate) bobCert.getCertificates().get(0);
             X500Name x500Name = new X500Name(certificate.getSubjectX500Principal().getName());
 
+            if (!x500Name.getCommonName().startsWith("Cliente")) {
+                System.out.println("Entidade não confiável");
+            }
+
             signature.initVerify(certificate.getPublicKey());
             signature.update(mKeyPair.getPublic().getEncoded());
             signature.update(bobPublicKey.getEncoded());
